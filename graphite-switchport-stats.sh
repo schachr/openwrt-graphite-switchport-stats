@@ -14,7 +14,7 @@ for port in $(swconfig dev switch0 show | egrep "^Port [0-9]:$" | cut -f2 -d" " 
 	swconfig dev switch0 port $port show | egrep " : [0-9]" | sed 's/ *: / /' | sed 's/ (.* .*)//g' | while read -r line ; do
 		graphiteline="$_prefix."$_hostname".swconfig.port"$port"."$line" "$_date
 
-                # sending to graphite with std on a interactive shell only
+                # sending to graphite with stdout on a interactive shell only
                 if [ -t 1 ] ; then
                     echo $graphiteline
                     echo $graphiteline | nc $_graphitehost $_graphiteport
