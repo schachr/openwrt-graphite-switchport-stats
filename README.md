@@ -3,7 +3,7 @@ OpenWrt/LEDE Switchport stats to Graphite
 
 This script parses the output of all switchports for all metrics via `swconfig` and sends tem to graphite.
 Please adjust the variables
-+ `_prefix`
++ `_graphiteprefix`
 + `_graphitehost`
 + `_graphiteport`
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # please use your graphite preferences here
-_prefix="schachr"
+_graphiteprefix="schachr"
 _graphitehost="graphitehost.example.com"
 _graphiteport="2003"
 
@@ -12,7 +12,7 @@ _date=$(date +%s)
 # data gathering
 for port in $(swconfig dev switch0 show | egrep "^Port [0-9]:$" | cut -f2 -d" " | sed 's/://') ; do
 	swconfig dev switch0 port $port show | egrep " : [0-9]" | sed 's/ *: / /' | sed 's/ (.* .*)//g' | while read -r line ; do
-		graphiteline="$_prefix."$_hostname".swconfig.port"$port"."$line" "$_date
+		graphiteline="$_graphiteprefix."$_hostname".swconfig.port"$port"."$line" "$_date
 
                 # sending to graphite with stdout on a interactive shell only
                 if [ -t 1 ] ; then
